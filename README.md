@@ -5,5 +5,9 @@
 - password: robotics
 
 ## To do list
-- Public ROS node from Arduino to Rasberry PI
+- [x] Public ROS node from Arduino to Rasberry Pi
 - Control motor by Arduino using Ros message from Pi
+- Read encoder and publish it to Rasberry Pi
+
+## Resources
+- [Rosserial Arduino](http://wiki.ros.org/rosserial_arduino/Tutorials)
