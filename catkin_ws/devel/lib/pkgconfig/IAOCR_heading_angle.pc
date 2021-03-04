@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/ROS_IAOCR/catkin_ws/devel
+
+Name: IAOCR_heading_angle
+Description: Description of IAOCR_heading_angle
+Version: 0.0.0
+Cflags: -I/home/ubuntu/ROS_IAOCR/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

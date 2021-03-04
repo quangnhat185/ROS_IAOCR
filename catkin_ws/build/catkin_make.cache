@@ -1,0 +1,2 @@
+IAOCR_heading_angle
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/ROS_IAOCR/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ROS_IAOCR/catkin_ws/install -G Unix Makefiles
