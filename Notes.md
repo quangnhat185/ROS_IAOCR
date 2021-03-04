@@ -1,3 +1,18 @@
+## General note:
+  - When ever you add a new node, for example `new_node.py`, modification in `CMakeLists.txt` need to be made, working space need to be build again, and the node need to be made executable:
+  ```CMakeLists.txt
+  catkin_install_python(PROGRAMS scripts/*
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  )
+  ```
+  ```
+  $ catkin_make
+  $ chmod +X new_node.py
+  $ rosrun {package_name} new_node.py
+  ```
+  - In case we add a launch file, the working space doesn't need to be build again. 
+
+
 ### Design goal of ROS:
   - The application task can be decomposed into many independent subsystems, such as navigation, computer vision, grasping and so on.
   - The subsystems can be used for other tasks, such as doing security patrols, cleaning, delivering mail, and so on.
