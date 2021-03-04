@@ -5,9 +5,10 @@
 - password: robotics
 
 ## To do list
-- [x] Public ROS node from Arduino to Rasberry Pi
-- Control motor by Arduino using Ros message from Pi
-- Read encoder and publish it to Rasberry Pi
+- [] Publish the heading angle (0-360) from Pi. Node name: `heading_angle`
+- [] Arduino subcribe for the heading angle
+- [] Arduino uses the heading angle to determine the speed of each motor
+- [] Arduino use PID to reguglate the speed of each motor via encoder
 
 ## Resources
 - [Rosserial Arduino](http://wiki.ros.org/rosserial_arduino/Tutorials)
