@@ -23,13 +23,16 @@ void setup() {
   //myMotor->run(FORWARD);
   // turn on motor
   //myMotor->run(RELEASE);
+   myMotor->run(RELEASE);
 }
 
 void loop() {
   uint8_t i;
 
-  //myMotor->run(FORWARD);
-  //myMotor->setSpeed(0);  
+  myMotor->run(FORWARD);
+  myMotor->setSpeed(150);
+  delay(5000);
+  myMotor->setSpeed(0);
+  delay(10000);
 
-  myMotor->run(RELEASE);
 }
