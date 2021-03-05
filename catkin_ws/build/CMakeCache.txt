@@ -214,12 +214,6 @@ GTEST_MAIN_LIBRARY:FILEPATH=GTEST_MAIN_LIBRARY-NOTFOUND
 //Path to a library.
 GTEST_MAIN_LIBRARY_DEBUG:FILEPATH=GTEST_MAIN_LIBRARY_DEBUG-NOTFOUND
 
-//Value Computed by CMake
-IAOCR_heading_angle_BINARY_DIR:STATIC=/home/ubuntu/ROS_IAOCR/catkin_ws/build/IAOCR_heading_angle
-
-//Value Computed by CMake
-IAOCR_heading_angle_SOURCE_DIR:STATIC=/home/ubuntu/ROS_IAOCR/catkin_ws/src/IAOCR_heading_angle
-
 //lsb_release executable was found
 LSB_FOUND:BOOL=TRUE
 
@@ -331,6 +325,12 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
+
+//Value Computed by CMake
+iaocr_teleop_BINARY_DIR:STATIC=/home/ubuntu/ROS_IAOCR/catkin_ws/build/iaocr_teleop
+
+//Value Computed by CMake
+iaocr_teleop_SOURCE_DIR:STATIC=/home/ubuntu/ROS_IAOCR/catkin_ws/src/iaocr_teleop
 
 //Path to a library.
 lib:FILEPATH=/opt/ros/kinetic/lib/librostime.so
