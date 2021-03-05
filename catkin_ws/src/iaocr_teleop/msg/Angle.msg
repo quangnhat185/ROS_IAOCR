@@ -1,1 +1,1 @@
-uint8 heading_angle
+uint16  data

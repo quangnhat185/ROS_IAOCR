@@ -18,22 +18,22 @@ class Angle {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.heading_angle = null;
+      this.data = null;
     }
     else {
-      if (initObj.hasOwnProperty('heading_angle')) {
-        this.heading_angle = initObj.heading_angle
+      if (initObj.hasOwnProperty('data')) {
+        this.data = initObj.data
       }
       else {
-        this.heading_angle = 0;
+        this.data = 0;
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type Angle
-    // Serialize message field [heading_angle]
-    bufferOffset = _serializer.uint8(obj.heading_angle, buffer, bufferOffset);
+    // Serialize message field [data]
+    bufferOffset = _serializer.uint16(obj.data, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -41,13 +41,13 @@ class Angle {
     //deserializes a message object of type Angle
     let len;
     let data = new Angle(null);
-    // Deserialize message field [heading_angle]
-    data.heading_angle = _deserializer.uint8(buffer, bufferOffset);
+    // Deserialize message field [data]
+    data.data = _deserializer.uint16(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 1;
+    return 2;
   }
 
   static datatype() {
@@ -57,13 +57,13 @@ class Angle {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '7c2f60eb16157d5125dbfd7e2509f483';
+    return '1df79edf208b629fe6b81923a544552d';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    uint8 heading_angle
+    uint16  data
     `;
   }
 
@@ -73,11 +73,11 @@ class Angle {
       msg = {};
     }
     const resolved = new Angle(null);
-    if (msg.heading_angle !== undefined) {
-      resolved.heading_angle = msg.heading_angle;
+    if (msg.data !== undefined) {
+      resolved.data = msg.data;
     }
     else {
-      resolved.heading_angle = 0
+      resolved.data = 0
     }
 
     return resolved;

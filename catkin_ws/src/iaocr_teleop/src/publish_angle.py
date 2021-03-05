@@ -4,21 +4,21 @@
 import rospy
 from iaocr_teleop.msg import Angle
 
-def publish_angle():
+
+def publish_angle(speed):
     pub = rospy.Publisher('heading_angle', Angle, queue_size=10)
     rospy.init_node('angle_publisher', anonymous=True)
-    rate = rospy.Rate(50) # 10hz
+    rate = rospy.Rate(100) # 10hz
 
-    i = 0
     while not rospy.is_shutdown():
-        if (i==360): i=0 
-        i+=1
-        rospy.loginfo(" %i degree"%i)
-        pub.publish(i)
+        rospy.loginfo(" %i "%speed)
+        pub.publish(speed)
         rate.sleep()
 
 if __name__ == '__main__':
+    speed = 250
     try:
-        publish_angle()
+        publish_angle(speed)
     except rospy.ROSInterruptException:
         pass
+        

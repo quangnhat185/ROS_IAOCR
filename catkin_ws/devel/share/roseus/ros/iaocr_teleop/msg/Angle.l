@@ -14,49 +14,49 @@
 
 (defclass iaocr_teleop::Angle
   :super ros::object
-  :slots (_heading_angle ))
+  :slots (_data ))
 
 (defmethod iaocr_teleop::Angle
   (:init
    (&key
-    ((:heading_angle __heading_angle) 0)
+    ((:data __data) 0)
     )
    (send-super :init)
-   (setq _heading_angle (round __heading_angle))
+   (setq _data (round __data))
    self)
-  (:heading_angle
-   (&optional __heading_angle)
-   (if __heading_angle (setq _heading_angle __heading_angle)) _heading_angle)
+  (:data
+   (&optional __data)
+   (if __data (setq _data __data)) _data)
   (:serialization-length
    ()
    (+
-    ;; uint8 _heading_angle
-    1
+    ;; uint16 _data
+    2
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; uint8 _heading_angle
-       (write-byte _heading_angle s)
+     ;; uint16 _data
+       (write-word _data s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; uint8 _heading_angle
-     (setq _heading_angle (sys::peek buf ptr- :char)) (incf ptr- 1)
+   ;; uint16 _data
+     (setq _data (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;;
    self)
   )
 
-(setf (get iaocr_teleop::Angle :md5sum-) "7c2f60eb16157d5125dbfd7e2509f483")
+(setf (get iaocr_teleop::Angle :md5sum-) "1df79edf208b629fe6b81923a544552d")
 (setf (get iaocr_teleop::Angle :datatype-) "iaocr_teleop/Angle")
 (setf (get iaocr_teleop::Angle :definition-)
-      "uint8 heading_angle
+      "uint16  data
 ")
 
 
 
-(provide :iaocr_teleop/Angle "7c2f60eb16157d5125dbfd7e2509f483")
+(provide :iaocr_teleop/Angle "1df79edf208b629fe6b81923a544552d")
 
 

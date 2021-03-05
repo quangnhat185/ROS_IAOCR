@@ -8,12 +8,12 @@ import struct
 
 
 class Angle(genpy.Message):
-  _md5sum = "7c2f60eb16157d5125dbfd7e2509f483"
+  _md5sum = "1df79edf208b629fe6b81923a544552d"
   _type = "iaocr_teleop/Angle"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """uint8 heading_angle"""
-  __slots__ = ['heading_angle']
-  _slot_types = ['uint8']
+  _full_text = """uint16  data"""
+  __slots__ = ['data']
+  _slot_types = ['uint16']
 
   def __init__(self, *args, **kwds):
     """
@@ -23,7 +23,7 @@ class Angle(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       heading_angle
+       data
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -32,10 +32,10 @@ class Angle(genpy.Message):
     if args or kwds:
       super(Angle, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.heading_angle is None:
-        self.heading_angle = 0
+      if self.data is None:
+        self.data = 0
     else:
-      self.heading_angle = 0
+      self.data = 0
 
   def _get_types(self):
     """
@@ -49,8 +49,8 @@ class Angle(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.heading_angle
-      buff.write(_get_struct_B().pack(_x))
+      _x = self.data
+      buff.write(_get_struct_H().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -63,8 +63,8 @@ class Angle(genpy.Message):
     try:
       end = 0
       start = end
-      end += 1
-      (self.heading_angle,) = _get_struct_B().unpack(str[start:end])
+      end += 2
+      (self.data,) = _get_struct_H().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -77,8 +77,8 @@ class Angle(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      _x = self.heading_angle
-      buff.write(_get_struct_B().pack(_x))
+      _x = self.data
+      buff.write(_get_struct_H().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -92,8 +92,8 @@ class Angle(genpy.Message):
     try:
       end = 0
       start = end
-      end += 1
-      (self.heading_angle,) = _get_struct_B().unpack(str[start:end])
+      end += 2
+      (self.data,) = _get_struct_H().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -102,9 +102,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_B = None
-def _get_struct_B():
-    global _struct_B
-    if _struct_B is None:
-        _struct_B = struct.Struct("<B")
-    return _struct_B
+_struct_H = None
+def _get_struct_H():
+    global _struct_H
+    if _struct_H is None:
+        _struct_H = struct.Struct("<H")
+    return _struct_H

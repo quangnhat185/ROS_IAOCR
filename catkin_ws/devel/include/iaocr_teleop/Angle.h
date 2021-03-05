@@ -24,17 +24,17 @@ struct Angle_
   typedef Angle_<ContainerAllocator> Type;
 
   Angle_()
-    : heading_angle(0)  {
+    : data(0)  {
     }
   Angle_(const ContainerAllocator& _alloc)
-    : heading_angle(0)  {
+    : data(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef uint8_t _heading_angle_type;
-  _heading_angle_type heading_angle;
+   typedef uint16_t _data_type;
+  _data_type data;
 
 
 
@@ -114,12 +114,12 @@ struct MD5Sum< ::iaocr_teleop::Angle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "7c2f60eb16157d5125dbfd7e2509f483";
+    return "1df79edf208b629fe6b81923a544552d";
   }
 
   static const char* value(const ::iaocr_teleop::Angle_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x7c2f60eb16157d51ULL;
-  static const uint64_t static_value2 = 0x25dbfd7e2509f483ULL;
+  static const uint64_t static_value1 = 0x1df79edf208b629fULL;
+  static const uint64_t static_value2 = 0xe6b81923a544552dULL;
 };
 
 template<class ContainerAllocator>
@@ -138,7 +138,7 @@ struct Definition< ::iaocr_teleop::Angle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "uint8 heading_angle\n\
+    return "uint16  data\n\
 ";
   }
 
@@ -157,7 +157,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.heading_angle);
+      stream.next(m.data);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -176,8 +176,8 @@ struct Printer< ::iaocr_teleop::Angle_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::iaocr_teleop::Angle_<ContainerAllocator>& v)
   {
-    s << indent << "heading_angle: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.heading_angle);
+    s << indent << "data: ";
+    Printer<uint16_t>::stream(s, indent + "  ", v.data);
   }
 };
 
