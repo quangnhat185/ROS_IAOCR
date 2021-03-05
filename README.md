@@ -7,6 +7,7 @@
 ## To do list
 - [x] Publish the heading angle (0-360) from Pi. Node name: `heading_angle`
 - [x] Arduino subcribe for the heading angle
+- [ ] Use Joystick 
 - [ ] Arduino uses the heading angle to determine the speed of each motor
 - [ ] Arduino use PID to reguglate the speed of each motor via encoder
 
