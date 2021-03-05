@@ -5,10 +5,14 @@
 - password: robotics
 
 ## To do list
-- [] Publish the heading angle (0-360) from Pi. Node name: `heading_angle`
-- [] Arduino subcribe for the heading angle
-- [] Arduino uses the heading angle to determine the speed of each motor
-- [] Arduino use PID to reguglate the speed of each motor via encoder
+- [x] Publish the heading angle (0-360) from Pi. Node name: `heading_angle`
+- [x] Arduino subcribe for the heading angle
+- [ ] Arduino uses the heading angle to determine the speed of each motor
+- [ ] Arduino use PID to reguglate the speed of each motor via encoder
 
 ## Resources
 - [Rosserial Arduino](http://wiki.ros.org/rosserial_arduino/Tutorials)
+
+## Frequent usage command lines
+- `$ sudo chmod a+rw /dev/ttyACM0A`  # permission for Arduino board to be uploaded
+- `$ rosrun rosserial_python serial_node.py /dev/ttyACM0` # intitialize serial communication
