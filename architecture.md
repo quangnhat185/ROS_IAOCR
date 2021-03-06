@@ -20,7 +20,7 @@ class Robot:
     
   method PID(array[M1_tar, M2_tar, M3_tar] target_speed):
     feedback_speed = encoder();
-    data input_speed;
+    array[M1, M2, M3] input_speed;
     input_speed = pid(input_speed, target_speed);
     self.set_speed(input_speed);
     
