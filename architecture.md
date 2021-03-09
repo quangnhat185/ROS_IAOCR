@@ -1,3 +1,6 @@
+## Random notes
+  - In the arduino code, running `FORWARD` denotes for clockwise rotation and vice versa
+
 ## Architecture of the Controller
 
 1. A gamepad is connected with Pi, which published a node `heading_angle` contain the desired heading angle message of the robot (0-360).
