@@ -17,7 +17,7 @@
 - Object robot contains following functions:
     - `robot.go([left_motor_direction,righ_motor_direction,back_motor_direction],[left_motor_speed,right_motor_speed,back_motor_speed])`, where:
         -` <motor>_direction` = 0 (1) : GO FORWARD (BACKWARD)
-        - `<moto>_speed`: 0 - 255
+        - `<motor>_speed`: 0 - 255
     - `robot.stop()`: stop the robot
 ## Resources
 - [Rosserial Arduino](http://wiki.ros.org/rosserial_arduino/Tutorials)
