@@ -1,4 +1,4 @@
-## The ROS packages for IAOCR
+## The ROS packages for IAOCRs
 
 - ip: 10.111.14.11
 - username: ubuntu@omnirobot
