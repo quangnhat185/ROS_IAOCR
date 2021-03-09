@@ -1,5 +1,4 @@
 ## Random notes
-  - In the arduino code, running `FORWARD` denotes for clockwise rotation and vice versa
 
 ## Architecture of the Controller
 

@@ -1,5 +1,6 @@
 ## General note:
-  - When ever you add a new node, for example `new_node.py`, modification in `CMakeLists.txt` need to be made, working space need to be build again, and the node need to be made executable:
+
+
   ```CMakeLists.txt
   catkin_install_python(PROGRAMS scripts/*
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -69,3 +70,6 @@
   type="listener.py" output="screen" />
   </launch>
   ```
+
+## Gampad configuration
+- `UP`: 
