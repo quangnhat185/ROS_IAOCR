@@ -11,12 +11,15 @@ float32[] axes
 int32[] buttons
 '''
 
+
 def callback(data):
     # Left joystick 
     #rospy.loginfo("%.3f -  %.3f"%(data.axes[0], data.axes[1]))
 
     # LB and RB
-    rospy.loginfo("%i -  %i"%(data.buttons[4], data.buttons[5]))
+    # rospy.loginfo("%i -  %i"%(data.buttons[4], data.buttons[5]))
+
+    rospy.loginfo(data.axes[:2])
 
     
 def listener():
