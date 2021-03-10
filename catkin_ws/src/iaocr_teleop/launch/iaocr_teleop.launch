@@ -1,3 +1,5 @@
 <launch>
-<node name="angle_publisher" pkg="iaocr_teleop" type="publish_angle.py" />
+    <!-- Commnunicate with Arduino through serial at 57600 baud-->
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM0"/>
+    <node name="angle_publisher" pkg="iaocr_teleop" type="publish_angle.py" />
 </launch>
