@@ -1,8 +1,20 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
-
+#include <ros.h>
+#include <std_msgs/UInt16.h>
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
+ros::NodeHandle nh;
+
+// gloabl variable  angle
+unsigned int angle;
+
+// callback funtion to derive data  from Pi
+void message(const std_msgs::UInt16 & cmd_msg){
+  angle = cmd_msg.data;
+}
+
+ros::Subscriber<std_msgs::UInt16> sub("heading_angle", message);
 
 class OmniRobot{
   public:
@@ -27,10 +39,32 @@ class OmniRobot{
       motor_back->setSpeed(voltage[2]);
     }
 
+    void turn_left(int speed=150){      
+      motor_left->run(FORWARD);
+      motor_left->setSpeed(speed);
+
+      motor_right->run(FORWARD);
+      motor_right->setSpeed(speed);
+
+      motor_back->run(FORWARD);
+      motor_back->setSpeed(speed);
+    }
+
+    void turn_right(int speed=150){
+      motor_left->run(BACKWARD);
+      motor_left->setSpeed(speed);
+
+      motor_right->run(BACKWARD);
+      motor_right->setSpeed(speed);
+
+      motor_back->run(BACKWARD);
+      motor_back->setSpeed(speed);
+    }    
+
     void stop(){
-      motor_left->setSpeed(0);
-      motor_right->setSpeed(0);
-      motor_back->setSpeed(0);
+      motor_left->run(RELEASE);
+      motor_right->run(RELEASE);
+      motor_back->run(RELEASE);
     }
 };
 
@@ -38,8 +72,11 @@ class OmniRobot{
 OmniRobot robot;
 
 void setup() {
-  Serial.begin(9600);           // set up Serial library at 9600 bps
-  Serial.println("Adafruit Motorshield v2 - DC Motor");
+  Serial.begin(57600);           // set up Serial library at 57600 bps
+
+  nh.initNode();
+  nh.subscribe(sub);
+
   AFMS.begin();  // create with the default frequency 1.6KHz
   robot.motor_left->run(RELEASE);
   robot.motor_right->run(RELEASE);
@@ -48,10 +85,23 @@ void setup() {
 
 
 void loop() {
-  int dic[3] = {0,0,0};
-  int speed[3] = {200,200,200};
+  nh.spinOnce();  
+  //int dic[3] = {0,0,0};
+  //int speed[3] = {200,200,200};
   //robot.go(dic, speed);
-  robot.stop();
-  delay(5000);
+  
+  
+  switch(angle){
+    case 720:
+      robot.turn_right();
+      break;
+    case 360:
+      robot.turn_left();
+      break;
+    default:
+      robot.stop();
+  }
+  
+  delay(1);
 
 }

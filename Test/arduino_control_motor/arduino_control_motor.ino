@@ -14,7 +14,7 @@ Adafruit_DCMotor *motor_left = AFMS.getMotor(1);
 //Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
 
 void setup() {
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(57600);           // set up Serial library at 9600 bps
   Serial.println("Adafruit Motorshield v2 - DC Motor test!");
 
   AFMS.begin();  // create with the default frequency 1.6KHz
@@ -31,15 +31,14 @@ void setup() {
 }
 
 void loop() {
-  uint8_t i;
 
-  motor_left->run(FORWARD);
-  motor_right->run(FORWARD);
-  motor_back->run(FORWARD);
+  motor_left->run(BACKWARD);
+  motor_right->run(BACKWARD);
+  motor_back->run(BACKWARD);
   
-  //motor_left->setSpeed(150);
-  //motor_right->setSpeed(150);
-  //motor_back->setSpeed(150);
+  motor_left->setSpeed(150);
+  motor_right->setSpeed(150);
+  motor_back->setSpeed(150);
   
   delay(5000);
   motor_left->setSpeed(0);
