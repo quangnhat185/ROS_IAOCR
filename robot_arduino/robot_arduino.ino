@@ -26,6 +26,7 @@ class OmniRobot{
       return (b==0)?(FORWARD):(BACKWARD);
     }
 
+
     void go(int binary_dict[3], int voltage[3]){
       
       //motor_left->run(binary_to_dict(binary_dict[0]));
@@ -97,6 +98,9 @@ void loop() {
       break;
     case 360:
       robot.turn_left();
+      break;
+    case 0:
+      robot.stop();
       break;
     default:
       robot.stop();
