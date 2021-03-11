@@ -89,7 +89,8 @@ OmniRobot robot;
 
 void setup() {
   Serial.begin(57600);           // set up Serial library at 57600 bps
-  Serial.print("Let the battle begins")
+  nh.getHardware()->setBaud(57600);
+  Serial.print("Let the battle begins");
   nh.initNode();
   nh.subscribe(sub);
 
@@ -97,7 +98,7 @@ void setup() {
   robot.motor_left->run(RELEASE);
   robot.motor_right->run(RELEASE);
   robot.motor_back->run(RELEASE);
-}g
+}
 
 
 void loop() {

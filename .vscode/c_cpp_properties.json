@@ -9,7 +9,9 @@
                 "/home/quang/Arduino/libraries/**",
                 "/home/quang/Downloads/arduino-1.8.13/libraries/**",
                 "/home/quang/Downloads/arduino-1.8.13/hardware/tools/**",
-                "/home/quang/Downloads/arduino-1.8.13/hardware/arduino/avr/**"
+                "/home/quang/Downloads/arduino-1.8.13/hardware/arduino/avr/**",
+                "/home/quang/.arduino15/packages/arduino/hardware/avr/1.8.2/**",
+                "/home/quang/.arduino15/packages/arduino/tools/**"
             ],
             "forcedInclude": [
                 "/home/quang/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Arduino.h"
