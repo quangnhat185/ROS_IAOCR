@@ -2,6 +2,7 @@
 #include <Adafruit_MotorShield.h>
 #include <ros.h>
 #include <std_msgs/UInt16.h>
+
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
 ros::NodeHandle nh;
@@ -25,20 +26,34 @@ class OmniRobot{
     uint8_t binary_to_dict(int b){
       return (b==0)?(FORWARD):(BACKWARD);
     }
+  
+  void go(int v_x=150, int v_y=150, int w=0, float l=0.12){
 
+    int v1, v2, v3;   
 
-    void go(int binary_dict[3], int voltage[3]){
-      
-      //motor_left->run(binary_to_dict(binary_dict[0]));
-      motor_left->run(binary_to_dict(binary_dict[0]));
-      motor_left->setSpeed(voltage[0]);
+    v1 = -v_x/2 - (sqrt(3)*v_y)/2 + l*w;
+    v2 = v_x + l*w;
+    v3 = -v_x/2 + (sqrt(3)*v_y)/2 + l*w;    
 
-      motor_right->run(binary_to_dict(binary_dict[1]));
-      motor_right->setSpeed(voltage[1]);
+    int velocity[3] = {v1, v2, v3};
+    int binary_dict[3];
+    int voltage[3];
 
-      motor_back->run(binary_to_dict(binary_dict[2]));
-      motor_back->setSpeed(voltage[2]);
+    for (int i=0; i<3; i++){
+      (velocity[i]>0)?(binary_dict[i] = 0):(binary_dict[i] = 1);
+      voltage[0] = abs(velocity[i]);
     }
+
+    //motor_left->run(binary_to_dict(binary_dict[0]));
+    motor_left->run(binary_to_dict(binary_dict[0]));
+    motor_left->setSpeed(voltage[0]);
+
+    motor_right->run(binary_to_dict(binary_dict[1]));
+    motor_right->setSpeed(voltage[1]);
+
+    motor_back->run(binary_to_dict(binary_dict[2]));
+    motor_back->setSpeed(voltage[2]);
+  }
 
     void turn_left(int speed=150){      
       motor_left->run(FORWARD);
@@ -74,7 +89,7 @@ OmniRobot robot;
 
 void setup() {
   Serial.begin(57600);           // set up Serial library at 57600 bps
-
+  Serial.print("Let the battle begins")
   nh.initNode();
   nh.subscribe(sub);
 
@@ -90,7 +105,7 @@ void loop() {
   //int dic[3] = {0,0,0};
   //int speed[3] = {200,200,200};
   //robot.go(dic, speed);
-  
+  Serial.println(angle);
   
   switch(angle){
     case 720:
@@ -103,7 +118,7 @@ void loop() {
       robot.stop();
       break;
     default:
-      robot.stop();
+      robot.go(angle);
   }
   
   delay(1);
