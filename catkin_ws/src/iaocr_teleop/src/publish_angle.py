@@ -9,8 +9,8 @@ from sensor_msgs.msg import Joy
 heading_angle = 0
 
 gamepad_dic = {
-    (0,1): 360,
-    (1,0): 720,
+    (0,1): 720,
+    (1,0): 360,
     (1,1): 0
 }
 
