@@ -197,7 +197,7 @@ void loop() {
       break;
     case 360:
       robot.rotate_left();
-      break;
+      break;      
     case 0:
       robot.stop();
       break;
