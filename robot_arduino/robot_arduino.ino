@@ -17,6 +17,20 @@ void message(const std_msgs::UInt16 & cmd_msg){
 
 ros::Subscriber<std_msgs::UInt16> sub("heading_angle", message);
 
+void serial_print_array(String name,  int arr1[], int arr2[]){
+  Serial.print(name + ": ");
+  for (int i=0; i<3; i++){
+    Serial.print(arr1[i%3]);
+    Serial.print(" ");
+  }
+
+  for (int i=0; i<3; i++){
+    Serial.print(arr2[i%3]);
+    Serial.print(" ");
+  }
+  Serial.println("");
+}
+
 class OmniRobot{
   public:
     Adafruit_DCMotor *motor_back = AFMS.getMotor(4);
@@ -26,34 +40,46 @@ class OmniRobot{
     uint8_t binary_to_dict(int b){
       return (b==0)?(FORWARD):(BACKWARD);
     }
-  
-  void go(int v_x=150, int v_y=150, int w=0, float l=0.12){
 
-    int v1, v2, v3;   
-
-    v1 = -v_x/2 - (sqrt(3)*v_y)/2 + l*w;
-    v2 = v_x + l*w;
-    v3 = -v_x/2 + (sqrt(3)*v_y)/2 + l*w;    
-
-    int velocity[3] = {v1, v2, v3};
     int binary_dict[3];
     int voltage[3];
+    int state_vec[3];
 
-    for (int i=0; i<3; i++){
-      (velocity[i]>0)?(binary_dict[i] = 0):(binary_dict[i] = 1);
-      voltage[0] = abs(velocity[i]);
+    void inverse_kinematic(int state_vec[], int binary_dict[], int voltage[], float l=0.12){
+
+      int v_x = state_vec[0];
+      int v_y = state_vec[1];
+      int w = state_vec[2];
+
+      int abs_vel[3];
+      abs_vel[0] = -v_x/2 - (sqrt(3)*v_y)/2 + l*w;
+      abs_vel[1] = v_x + l*w;
+      abs_vel[2] = -v_x/2 + (sqrt(3)*v_y)/2 + l*w;    
+
+      for (int i=0; i<3; i++){
+        (abs_vel[i]>0)?(binary_dict[i]=0):(binary_dict[i]=1);
+        voltage[i] = abs(abs_vel[i]);
+      }
+
     }
 
-    //motor_left->run(binary_to_dict(binary_dict[0]));
-    motor_left->run(binary_to_dict(binary_dict[0]));
-    motor_left->setSpeed(voltage[0]);
+  
+    void go(int state_vec[], float l=0.12){
 
-    motor_right->run(binary_to_dict(binary_dict[1]));
-    motor_right->setSpeed(voltage[1]);
+      inverse_kinematic(state_vec, binary_dict, voltage);
 
-    motor_back->run(binary_to_dict(binary_dict[2]));
-    motor_back->setSpeed(voltage[2]);
-  }
+      serial_print_array("direct/voltage: ", binary_dict, voltage);
+
+      //motor_left->run(binary_to_dict(binary_dict[0]));
+      motor_left->run(binary_to_dict(binary_dict[0]));
+      motor_left->setSpeed(voltage[0]);
+
+      motor_right->run(binary_to_dict(binary_dict[1]));
+      motor_right->setSpeed(voltage[1]);
+
+      motor_back->run(binary_to_dict(binary_dict[2]));
+      motor_back->setSpeed(voltage[2]);
+    }
 
     void turn_left(int speed=150){      
       motor_left->run(FORWARD);
@@ -106,8 +132,13 @@ void loop() {
   //int dic[3] = {0,0,0};
   //int speed[3] = {200,200,200};
   //robot.go(dic, speed);
-  Serial.println(angle);
+
+  int v_x, v_y;
+  v_x,v_y = 150;
+
+  int state_vec[3] = {v_x, v_y, int(angle)};
   
+  /*
   switch(angle){
     case 720:
       robot.turn_right();
@@ -119,9 +150,12 @@ void loop() {
       robot.stop();
       break;
     default:
-      robot.go(angle);
+      robot.go(state_vec);
   }
+  */
   
+  int test[3] = {0,0, int(angle)};
+  robot.go(test);
   delay(1);
 
 }
