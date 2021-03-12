@@ -120,10 +120,7 @@ class OmniRobot{
         assign_array(binary_dict,dir);
         assign_array(voltage, vel);          
       }else{
-        int dir[3] = {0,0,0};
-        int vel[3] = {0,0,0};
-        assign_array(binary_dict,dir);
-        assign_array(voltage, vel);   
+        stop();   
       }
 
       // serial_print_array("direct/voltage: ", binary_dict, voltage);                             
