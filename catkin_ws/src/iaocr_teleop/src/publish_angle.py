@@ -47,7 +47,7 @@ def main():
 
     # publush heading angle
     pub = rospy.Publisher('heading_angle', Angle, queue_size=10)
-    rate = rospy.Rate(100) # 100hz
+    rate = rospy.Rate(10) # 10hz
 
 
     while not rospy.is_shutdown():
