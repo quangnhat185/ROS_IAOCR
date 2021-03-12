@@ -114,13 +114,16 @@ class OmniRobot{
         assign_array(binary_dict,dir);
         assign_array(voltage, vel);            
       }// Down
-      else{
+      else if (heading==1000){
         int dir[3] = {1,0,0};
         int vel[3] = {base_speed, base_speed,0};
         assign_array(binary_dict,dir);
         assign_array(voltage, vel);          
-      } 
-      serial_print_array("direct/voltage: ", binary_dict, voltage);                             
+      }else{
+        stop();   
+      }
+
+      // serial_print_array("direct/voltage: ", binary_dict, voltage);                             
     }
 
     
@@ -176,7 +179,6 @@ OmniRobot robot;
 
 void setup() {
   Serial.begin(57600);           // set up Serial library at 57600 bps
-  nh.getHardware()->setBaud(57600);
   Serial.print("Let the battle begins");
   nh.initNode();
   nh.subscribe(sub);
@@ -190,7 +192,21 @@ void setup() {
 
 void loop() {
   nh.spinOnce();  
-  
+
+  /*
+  if (angle==720){
+    robot.rotate_right();
+  }
+  else if (angle==360){
+    robot.rotate_left();
+  }else if (angle==0){
+    robot.stop();
+  }else{
+    robot.go(angle);
+  }
+  delay(10);
+  */
+
   switch(angle){
     case 720:
       robot.rotate_right();
@@ -204,7 +220,7 @@ void loop() {
     default:
       robot.go(angle);
   }
-
+  delay(10);
   /*
   robot.go(60);
   delay(1);
