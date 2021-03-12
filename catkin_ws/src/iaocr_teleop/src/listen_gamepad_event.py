@@ -19,7 +19,7 @@ def callback(data):
     # LB and RB
     # rospy.loginfo("%i -  %i"%(data.buttons[4], data.buttons[5]))
 
-    rospy.loginfo(data.axes[:2])
+    rospy.loginfo(data.axes)
 
     
 def listener():

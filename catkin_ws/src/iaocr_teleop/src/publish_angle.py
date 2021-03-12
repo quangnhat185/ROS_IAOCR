@@ -21,7 +21,8 @@ def angle_from_gamepad_event(axes_array, button_array):
     if (1 in button_array):
         angle = gamepad_dic[button_array]
     else:
-        angle = int(180/np.pi*(np.arctan2(axes_array[0],axes_array[1]))+ 180)
+        if (axes_array[0] == 0 and axes_array[1]==-1): angle = 1000
+        else: angle = int(180/np.pi*(np.arctan2(axes_array[0],axes_array[1]))+ 180)
 
     #rospy.loginfo(angle)       
     return angle
