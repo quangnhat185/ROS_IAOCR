@@ -45,6 +45,12 @@ class OmniRobot{
     int voltage[3];
     int state_vec[3];
 
+    void assign_array(int arr1[], int arr2[]){
+      for (int i=0; i<3; i++){
+        arr1[i]=arr2[i];
+      }
+    }
+
     void inverse_kinematic(int state_vec[], int binary_dict[], int voltage[], float l=0.12){
 
       int v_x = state_vec[0];
@@ -63,12 +69,67 @@ class OmniRobot{
 
     }
 
-  
-    void go(int state_vec[], float l=0.12){
+    void control_from_gamepad(unsigned int heading, int binary_dict[], int voltage[], int base_speed=200){
+      // Up
+      if ((170<heading) && (heading<190))
+      {
+        int dir[3] = {0,1,0};
+        int vel[3] = {base_speed, base_speed,0};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);             
+      }// South-East
+      else if ((10<heading) && (heading<80)){
+        int dir[3] = {1,0,1};
+        int vel[3] = {base_speed/2, base_speed,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);                      
+      }// Right
+      else if ((80<heading) && (heading<100)){
+        int dir[3] = {0,0,1};
+        int vel[3] = {base_speed/2, base_speed/2,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);            
+      }// North-East      
+      else if ((100<heading) && (heading<170)){
+        int dir[3] = {0,1,1};
+        int vel[3] = {base_speed, base_speed/2,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);            
+      }//North-West
+      else if ((190<heading) && (heading<260)){
+        int dir[3] = {0,1,0};
+        int vel[3] = {base_speed/2, base_speed,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);            
+      } // Left
+      else if ((260<heading) && (heading<280)){
+        int dir[3] = {1,1,0};
+        int vel[3] = {base_speed/2, base_speed/2,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);            
+      } // South-West
+      else if ((280<heading) && (heading<350)){
+        int dir[3] = {1,0,0};
+        int vel[3] = {base_speed, base_speed/2,base_speed};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);            
+      }// Down
+      else{
+        int dir[3] = {1,0,0};
+        int vel[3] = {base_speed, base_speed,0};
+        assign_array(binary_dict,dir);
+        assign_array(voltage, vel);          
+      } 
+      serial_print_array("direct/voltage: ", binary_dict, voltage);                             
+    }
 
-      inverse_kinematic(state_vec, binary_dict, voltage);
+    
+    void go(unsigned int heading, int base_speed=200, float l=0.12){
 
-      serial_print_array("direct/voltage: ", binary_dict, voltage);
+      //inverse_kinematic(state_vec, binary_dict, voltage);
+      control_from_gamepad(heading, binary_dict, voltage, base_speed);
+
+      //serial_print_array("direct/voltage: ", binary_dict, voltage);
 
       //motor_left->run(binary_to_dict(binary_dict[0]));
       motor_left->run(binary_to_dict(binary_dict[0]));
@@ -81,7 +142,7 @@ class OmniRobot{
       motor_back->setSpeed(voltage[2]);
     }
 
-    void turn_left(int speed=150){      
+    void rotate_left(int speed=150){      
       motor_left->run(FORWARD);
       motor_left->setSpeed(speed);
 
@@ -92,7 +153,7 @@ class OmniRobot{
       motor_back->setSpeed(speed);
     }
 
-    void turn_right(int speed=150){
+    void rotate_right(int speed=150){
       motor_left->run(BACKWARD);
       motor_left->setSpeed(speed);
 
@@ -129,33 +190,28 @@ void setup() {
 
 void loop() {
   nh.spinOnce();  
-  //int dic[3] = {0,0,0};
-  //int speed[3] = {200,200,200};
-  //robot.go(dic, speed);
-
-  int v_x, v_y;
-  v_x,v_y = 150;
-
-  int state_vec[3] = {v_x, v_y, int(angle)};
   
-  /*
   switch(angle){
     case 720:
-      robot.turn_right();
+      robot.rotate_right();
       break;
     case 360:
-      robot.turn_left();
+      robot.rotate_left();
       break;
     case 0:
       robot.stop();
       break;
     default:
-      robot.go(state_vec);
+      robot.go(angle);
   }
-  */
-  
-  int test[3] = {0,0, int(angle)};
-  robot.go(test);
+
+  /*
+  robot.go(60);
   delay(1);
+  */
+
+
+
+
 
 }
