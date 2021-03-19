@@ -2,6 +2,8 @@
 # The ROS packages for IAOCRs
 
 <p align="center"> <img src="./img/iaocr.jpg" width="640" ></img></p>
+<br>
+
 ## Physical addresses
 - ip: 10.111.14.11
 - username: ubuntu@omnirobot
