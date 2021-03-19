@@ -4,13 +4,6 @@
 - username: ubuntu@omnirobot
 - password: robotics
 
-## To do list
-- [x] Publish the heading angle (0-360) from Pi. Node name: `heading_angle`
-- [x] Arduino subcribe for the heading angle
-- [x] Use Joystick 
-- [ ] Define a method to rotate the robot around its axis with RB and LB buttons. One idea is sending the headng angle >360 for turning right and <-360 to Arduino.
-- [ ] Arduino uses the heading angle to determine the speed of each motor
-- [ ] Arduino use PID to reguglate the speed of each motor via encoder
 
 ## Notes
 - Make sure Gamepad in X mode. Use `left joystick` to control the robot going in desired direction. Use `RB` to rotate to the left, `LB` to rotate to the right
