@@ -1,5 +1,5 @@
 
-# The ROS packages for IAOCRs
+# The ROS packages for IAOCR
 
 <p align="center"> <img src="./img/iacor_teleop.gif" width="640" ></img></p>
 <br>
