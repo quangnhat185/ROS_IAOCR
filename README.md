@@ -1,7 +1,7 @@
 
 # The ROS packages for IAOCRs
 
-<p align="center"> <img src="./img/iaocr.jpg" width="640" ></img></p>
+<p align="center"> <img src="./img/iacor_teleop.gif" width="640" ></img></p>
 <br>
 
 ## Physical addresses
