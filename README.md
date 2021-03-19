@@ -10,13 +10,19 @@
 - password: robotics
 
 ## Installation with ROS
-__This development is tested on ROS Melodic__
+__This development is tested on ROS Kinetic__
 
 ```
 $ cd ~/ROS_IAOCR/catkin_ws
 $ catkin_make
 $ source devel/setup.bash
 
+```
+
+## Install dependencies
+```
+$ sudo apt install ros-kinetic-teleop-twist-joy #install gamepad package
+$ sudo apt install ros-kinetic-rosserial #install ROS serialized message packages
 ```
 
 ## Launch IAOCR teleop
