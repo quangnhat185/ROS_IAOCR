@@ -5,8 +5,8 @@
 <br>
 
 ## Physical addresses
-- ip: 10.111.14.11
-- username: ubuntu@omnirobot
+- ip: 10.111.14.17
+- username: ubuntu@ubiquityrobot
 - password: robotics
 
 ## Installation with ROS
