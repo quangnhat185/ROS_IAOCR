@@ -1,7 +1,7 @@
 
 # The ROS packages for IAOCR
 
-<p align="center"> <img src="./img/iacor_teleop.gif" width="640" ></img></p>
+<p align="center"> <img src="./img/iacor_teleop.gif" width="720" ></img></p>
 <br>
 
 ## Physical addresses
@@ -57,9 +57,11 @@ Then, you can use the following equations for the inverse kinematics relative to
 ## Circuit diagram 
 - Arduino is conected with Raspberry Pi via serial port with TTL to USB cable
 - Connetction between Arduino and Motors, Arduino and Encoders can be seen as below:
-<p align="center"> <img src="./img/encoder_arduino.png" width="640" ></img></p>
-![arduino and encover](./img/encoder_arduino.png)
-![arduini and motorshield](./img/motor_shield.png)
+<p align="center"> <img src="./img/encoder_arduino.png" width="480"></img></p>
+<br>
+
+<p align="center"> <img src="./img/motor_shield.png" width="480"></img></p>
+<br>
 
 ## Notes
 - Make sure Gamepad in X mode. Use `left joystick` to control the robot going in desired direction. Use `RB` to rotate to the left, `LB` to rotate to the right
