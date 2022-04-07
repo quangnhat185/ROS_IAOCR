@@ -54,6 +54,11 @@ Then, you can use the following equations for the inverse kinematics relative to
 
 ![mobile inverse kinematics](./img/inverse_mobile.png)
 
+## Circuit diagram 
+- Arduino is conected with Raspberry Pi via serial port with TTL to USB cable
+- Connetction between Arduino and Motors, Arduino and Encoders can be seen as below:
+![arduino and encover](./img/encoder_arduino.png)
+![arduini and motorshield](./img/motor_shield.png)
 
 ## Notes
 - Make sure Gamepad in X mode. Use `left joystick` to control the robot going in desired direction. Use `RB` to rotate to the left, `LB` to rotate to the right
