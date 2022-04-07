@@ -57,6 +57,7 @@ Then, you can use the following equations for the inverse kinematics relative to
 ## Circuit diagram 
 - Arduino is conected with Raspberry Pi via serial port with TTL to USB cable
 - Connetction between Arduino and Motors, Arduino and Encoders can be seen as below:
+<p align="center"> <img src="./img/encoder_arduino.png" width="640" ></img></p>
 ![arduino and encover](./img/encoder_arduino.png)
 ![arduini and motorshield](./img/motor_shield.png)
 
