@@ -4,6 +4,8 @@
 <p align="center"> <img src="./img/iacor_teleop.gif" width="720" ></img></p>
 <br>
 
+### [Read my thesis regarding this project](https://drive.google.com/file/d/158qZcevoyyIlEgEP3SajLvqwbO7l6WVO/view?usp=sharing)
+
 ## Physical addresses
 - ip: 10.111.14.17
 - username: ubuntu@ubiquityrobot
